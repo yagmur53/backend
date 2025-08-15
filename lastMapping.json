@@ -1,0 +1,18 @@
+{
+  "Toplantı /  Faaliyetin ID (SKS Öncelikli)": "id",
+  "Toplantının / Faaliyetin Adı": "ad",
+  "Ulusal/ Uluslararası": "ulusal",
+  "Faaliyet Türü": "tur",
+  "Etkinlik Teması": "tema",
+  "Başlama Tarihi": "baslama",
+  "Kalite Kültürünü Yaygınlaştırma Amacı Var Mı": "kaliteKulturu",
+  "Yurt Dışından Katılımcı Sayısı": "katilimci",
+  "Düzenleyen Birim (Fakilte ve Bölüm / Enstitü ya da Araş. Mer. Adı)": "ad",
+  "Faaliyet Yürütücüsü": "faaliyetYurutucusu",
+  "Kariyer Merkezi Faaliyeti Mi": "kariyerMerkezi",
+  "Bağımlılıkla Mücadele Kapsamında Bir Faaliyet Mi": "bagimlilik",
+  "Dezavantajlı Gruplara Yönelik Faaliyet Mi": "dezavantajli",
+  "Katılım Türü": "katilimTur",
+  "Url": "url",
+  "Sürdürülebilir Kalkınma Amacı": "kalkinmaAraci"
+}
