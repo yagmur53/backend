@@ -120,6 +120,24 @@ app.post("/api/upload-excel", upload.single("file"), (req, res) => {
   res.json({ success: true, added: normalizedData.length });
 });
 
+// Belirli bir etkinliği sil
+app.delete("/api/etkinlikler/:id", (req, res) => {
+  const { id } = req.params;
+  let etkinlikler = readData();
+
+  const index = etkinlikler.findIndex((e) => e.id === id);
+  if (index === -1) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Etkinlik bulunamadı" });
+  }
+
+  etkinlikler.splice(index, 1); // Listedeki o kaydı sil
+  writeData(etkinlikler);
+
+  res.json({ success: true, message: "Etkinlik silindi" });
+});
+
 // Mevcut etkinlikleri getir - YENİ FORMAT
 app.get("/api/etkinlikler", (req, res) => {
   const etkinlikler = readData();
