@@ -120,6 +120,10 @@ app.post("/api/upload-excel", upload.single("file"), (req, res) => {
   res.json({ success: true, added: normalizedData.length });
 });
 
+app.get("/", (req, res) => {
+  res.send("Sunucu çalışıyor 🚀");
+});
+
 // Belirli bir etkinliği sil
 app.delete("/api/etkinlikler/:id", (req, res) => {
   const { id } = req.params;
