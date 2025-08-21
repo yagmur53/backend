@@ -15,7 +15,6 @@
   "katılım türü": "katilimTur",
   "url": "url",
   "sürdürülebilir kalkınma amacı": "kalkinmaAraci",
-  "bütçe": "butcea",
   "birim adı": "ad",
   "etkinliğin adı": "ad",
   "ulusal/uluslararası": "ulusal",
@@ -24,6 +23,5 @@
   "toplam katılımcı sayısı": "katilimci",
   "düzenleyen birim(fakülte ve bölüm/enstitü yada araştırma": "ad",
   "faaliyet yürütücüsü(öğrenci/akademik personel/i̇dari per": "ad",
-  "bağımlılıkla mücadele kapsamında bir faaliyet mi?(evet/ha": "ad",
-  "yer": "yer"
+  "bağımlılıkla mücadele kapsamında bir faaliyet mi?(evet/ha": "ad"
 }

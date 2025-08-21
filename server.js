@@ -120,8 +120,14 @@ app.post("/api/upload-excel", upload.single("file"), (req, res) => {
   res.json({ success: true, added: normalizedData.length });
 });
 
-app.get("/", (req, res) => {
-  res.send("Sunucu çalışıyor 🚀");
+app.get("/api/etkinlikler", (req, res) => {
+  const etkinlikler = readData();
+  const customFields = readCustomFields();
+
+  res.json({
+    etkinlikler: etkinlikler,
+    customFields: customFields,
+  });
 });
 
 // Belirli bir etkinliği sil
