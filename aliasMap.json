@@ -7,7 +7,7 @@
   "başlama tarihi": "baslama",
   "kalite kültürünü yaygınlaştırma amacı var mı": "kaliteKulturu",
   "yurt dışından katılımcı sayısı": "katilimci",
-  "düzenleyen birim (fakilte ve bölüm / enstitü ya da araş. mer. adı)": "ad",
+  "düzenleyen birim (fakilte ve bölüm / enstitü ya da araş. mer. adı)": "duzenleyenBirim",
   "faaliyet yürütücüsü": "faaliyetYurutucusu",
   "kariyer merkezi faaliyeti mi": "kariyerMerkezi",
   "bağımlılıkla mücadele kapsamında bir faaliyet mi": "bagimlilik",
@@ -19,9 +19,5 @@
   "etkinliğin adı": "ad",
   "ulusal/uluslararası": "ulusal",
   "bitiş tarihi": "baslama",
-  "kalite kültürünü yaygınlaştırma amacı var mı? (evet/ha": "tur",
-  "toplam katılımcı sayısı": "katilimci",
-  "düzenleyen birim(fakülte ve bölüm/enstitü yada araştırma": "ad",
-  "faaliyet yürütücüsü(öğrenci/akademik personel/i̇dari per": "ad",
-  "bağımlılıkla mücadele kapsamında bir faaliyet mi?(evet/ha": "ad"
+  "toplam katılımcı sayısı": "katilimci"
 }
