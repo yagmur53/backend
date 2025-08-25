@@ -37,6 +37,22 @@ const readLastBatch = () => {
 const writeLastBatch = (batchId) => {
   fs.writeFileSync(LAST_BATCH_PATH, JSON.stringify({ lastBatchId: batchId }));
 };
+// DELETE tek bir etkinlik
+app.delete("/api/etkinlikler/:id", (req, res) => {
+  const { id } = req.params;
+  let data = readData();
+  const filtered = data.filter((item) => item.id !== id);
+
+  if (filtered.length === data.length) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Etkinlik bulunamadı" });
+  }
+
+  writeData(filtered);
+
+  res.json({ success: true, message: `Etkinlik başarıyla silindi` });
+});
 
 // GET tüm etkinlikler
 app.get("/api/etkinlikler", (req, res) => {
