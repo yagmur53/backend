@@ -37,6 +37,7 @@ const readLastBatch = () => {
 const writeLastBatch = (batchId) => {
   fs.writeFileSync(LAST_BATCH_PATH, JSON.stringify({ lastBatchId: batchId }));
 };
+
 // DELETE tek bir etkinlik
 app.delete("/api/etkinlikler/:id", (req, res) => {
   const { id } = req.params;
@@ -58,6 +59,34 @@ app.delete("/api/etkinlikler/:id", (req, res) => {
 app.get("/api/etkinlikler", (req, res) => {
   const etkinlikler = readData();
   res.json({ etkinlikler });
+});
+
+// GET unique headers - YENİ ENDPOINT
+app.get("/api/etkinlikler/headers", (req, res) => {
+  try {
+    const data = readData();
+    const headers = new Set();
+
+    // Tüm kayıtlardaki key'leri topla
+    data.forEach((item) => {
+      Object.keys(item).forEach((key) => {
+        // id ve batchId dışındakileri ekle
+        if (key !== "id" && key !== "batchId") {
+          headers.add(key);
+        }
+      });
+    });
+
+    res.json({
+      success: true,
+      headers: Array.from(headers).sort(), // Alfabetik sırala
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 });
 
 // POST etkinlikler (batchId ekle)
