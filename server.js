@@ -59,6 +59,27 @@ app.get("/api/etkinlikler", (req, res) => {
   const etkinlikler = readData();
   res.json({ etkinlikler });
 });
+// GET etkinlik başlıkları
+app.get("/api/etkinlikler/headers", (req, res) => {
+  try {
+    const etkinlikler = readData();
+
+    if (!Array.isArray(etkinlikler) || etkinlikler.length === 0) {
+      return res.json({ success: true, headers: [] });
+    }
+
+    // Tüm etkinliklerin key'lerini topla
+    const headers = new Set();
+    etkinlikler.forEach((etkinlik) => {
+      Object.keys(etkinlik).forEach((key) => headers.add(key));
+    });
+
+    res.json({ success: true, headers: Array.from(headers) });
+  } catch (error) {
+    console.error("Başlıklar alınırken hata:", error);
+    res.status(500).json({ success: false, message: "Sunucu hatası" });
+  }
+});
 
 // POST etkinlikler (batchId ekle)
 app.post("/api/etkinlikler", (req, res) => {
