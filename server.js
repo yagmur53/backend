@@ -74,7 +74,12 @@ app.get("/api/etkinlikler/headers", (req, res) => {
       Object.keys(etkinlik).forEach((key) => headers.add(key));
     });
 
-    res.json({ success: true, headers: Array.from(headers) });
+    // id ve batchId hariç filtrele
+    const filteredHeaders = Array.from(headers).filter(
+      (key) => key !== "id" && key !== "batchId"
+    );
+
+    res.json({ success: true, headers: filteredHeaders });
   } catch (error) {
     console.error("Başlıklar alınırken hata:", error);
     res.status(500).json({ success: false, message: "Sunucu hatası" });
