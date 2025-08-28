@@ -37,6 +37,7 @@ const readLastBatch = () => {
 const writeLastBatch = (batchId) => {
   fs.writeFileSync(LAST_BATCH_PATH, JSON.stringify({ lastBatchId: batchId }));
 };
+
 // DELETE tek bir etkinlik
 app.delete("/api/etkinlikler/:id", (req, res) => {
   const { id } = req.params;
@@ -59,6 +60,7 @@ app.get("/api/etkinlikler", (req, res) => {
   const etkinlikler = readData();
   res.json({ etkinlikler });
 });
+
 // GET etkinlik başlıkları
 app.get("/api/etkinlikler/headers", (req, res) => {
   try {
@@ -86,6 +88,35 @@ app.get("/api/etkinlikler/headers", (req, res) => {
   }
 });
 
+// GET tüm batch'leri getir (tarih sıralı)
+app.get("/api/batches", (req, res) => {
+  const data = readData();
+
+  // Unique batch'leri ve bilgilerini topla
+  const batchMap = new Map();
+
+  data.forEach((item) => {
+    if (item.batchId && !batchMap.has(item.batchId)) {
+      // İlk item'dan batch bilgisini al
+      batchMap.set(item.batchId, {
+        batchId: item.batchId,
+        uploadDate: item.uploadDate || new Date().toISOString(), // Eğer kayıtlı değilse bugünü al
+        recordCount: 0,
+      });
+    }
+    if (item.batchId) {
+      batchMap.get(item.batchId).recordCount++;
+    }
+  });
+
+  // Array'e çevir ve tarihe göre sırala (en yeni önce)
+  const batches = Array.from(batchMap.values()).sort(
+    (a, b) => new Date(b.uploadDate) - new Date(a.uploadDate)
+  );
+
+  res.json({ success: true, batches });
+});
+
 // POST etkinlikler (batchId ekle)
 app.post("/api/etkinlikler", (req, res) => {
   const { data } = req.body;
@@ -94,10 +125,13 @@ app.post("/api/etkinlikler", (req, res) => {
     return res.status(400).json({ success: false, message: "Geçersiz veri" });
   }
 
-  const batchId = uuidv4(); // her yüklemeye unique batchId
+  const batchId = uuidv4();
+  const uploadDate = new Date().toISOString();
+
   const normalizedData = data.map((item) => ({
     id: uuidv4(),
     batchId,
+    uploadDate, // Tarih bilgisi ekle
     ...item,
   }));
 
