@@ -96,7 +96,7 @@ app.post("/api/etkinlikler", (req, res) => {
 
   const batchId = uuidv4(); // her yüklemeye unique batchId
   const normalizedData = data.map((item) => ({
-    id: item.id || uuidv4(), // id varsa koru, yoksa yeni oluştur
+    id: uuidv4(),
     batchId,
     ...item,
   }));
